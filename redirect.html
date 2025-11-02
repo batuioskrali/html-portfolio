@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönlendiriliyorsunuz…</title>
+</head>
+<body>
+  <p>Yönlendiriliyorsunuz...</p>
+  <script>
+    // Query param ile hedef sayfa belirlenebilir: ?u=/products/capture
+    const urlParams = new URLSearchParams(window.location.search);
+    const target = urlParams.get('u') || '/';
+
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isInApp = /Instagram|FBAV|FB_IAB/i.test(ua);
+
+    if (isInApp) {
+      window.open(target, "_blank"); // in-app browser -> Safari
+    } else {
+      window.location.href = target; // normal tarayıcı -> direkt aç
+    }
+  </script>
+</body>
+</html>
